@@ -6,7 +6,7 @@ game.enemy = game.enemy || {};
 /**
  * Enemy that simply stands there doing nothing.
  */
-game.enemy.entity = me.ObjectEntity.extend({
+game.enemy.entity = me.Entity.extend({
 
 	/**
 	 * Create a new Enemy.

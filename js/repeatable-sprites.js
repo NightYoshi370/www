@@ -7,7 +7,7 @@
  * Displays a sprite on the screen, being able to repeat
  * the image along the vertical and horizontal axis.
  * @class
- * @extends me.SpriteObject
+ * @extends me.Sprite
  *
  * It's just like a regular Sprite, but it can repeat an
  * image as much as you want.
@@ -24,7 +24,7 @@
  * when "actually it will be one".
  *
  */
-me.RepeatableSpriteObject = me.SpriteObject.extend({
+me.RepeatableSpriteObject = me.Sprite.extend({
 
 	/**
 	 * Creates a repeatable sprite inside a specific area.

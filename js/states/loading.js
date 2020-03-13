@@ -33,7 +33,7 @@
  *       Thus, the progress bar would never show.
  *       So I only need to draw this once - when created.
  */
-var BackgroundImageThatOnlyDrawsWhenAsked = me.SpriteObject.extend({
+var BackgroundImageThatOnlyDrawsWhenAsked = me.Sprite.extend({
 
 	init : function(image, x, y, w, h) {
 		this.parent(x, y, image);

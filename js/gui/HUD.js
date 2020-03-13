@@ -19,7 +19,7 @@ game.HUD = game.HUD || {};
 /**
  * Container for all the HUDs on the game.
  */
-game.HUD.Container = me.ObjectContainer.extend({
+game.HUD.Container = me.Container.extend({
 
 	init : function() {
 		this.parent();

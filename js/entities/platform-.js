@@ -8,7 +8,7 @@ game.platform = game.platform || {};
 /**
  * Floating thing that you can step into.
  */
-game.platform.entity = me.ObjectEntity.extend({
+game.platform.entity = me.Entity.extend({
 
 	/**
 	 * Create a new Platform.

@@ -67,7 +67,7 @@ var game = {
 		// Initialize the video, making sure to stretch the canvas
 		// to fill the available space.
 		// TODO: See if `double buffering` is any good for performance
-		if (! me.video.init("screen", 32, 32, true, "auto", true)) {
+		if (! me.video.init("screen", me.video.AUTO, 32, 32, true, "auto", true)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}

@@ -115,7 +115,7 @@ me.MenuItem = me.Renderable.extend({
  * It keeps track of which item is selected
  * right now and can activate it at any time.
  */
-me.Menu = me.ObjectContainer.extend({
+me.Menu = me.Container.extend({
 
 	init : function(x, y) {
 

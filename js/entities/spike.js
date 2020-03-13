@@ -31,7 +31,7 @@ game.spike.type = {
  *       span a huge area the spike sprite will repeat
  *       along it.
  */
-game.spikeEntity = me.ObjectEntity.extend({
+game.spikeEntity = me.Entity.extend({
 
 	/**
 	 * Create a new Spike.

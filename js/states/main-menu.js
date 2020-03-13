@@ -29,7 +29,7 @@ game.MainMenuState = me.ScreenObject.extend({
 
 		// Creating the Background image
 		// for the main menu.
-		me.game.world.addChild(new me.SpriteObject(
+		me.game.world.addChild(new me.Sprite(
 			0, 0,
 			me.loader.getImage("main-menu-bg")
 		), -1);
@@ -115,7 +115,7 @@ game.MainMenuState = me.ScreenObject.extend({
 		me.game.world.addChild(this.menu, 3);
 
 		// Le logo
-		me.game.world.addChild(new me.SpriteObject(
+		me.game.world.addChild(new me.Sprite(
 			0, 0,
 			me.loader.getImage("logo")
 		), 4);

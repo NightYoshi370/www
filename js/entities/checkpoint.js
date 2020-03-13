@@ -27,7 +27,7 @@ game.checkpoint.current = null;
  * Thing that enables the player to return to it's position,
  * when collided.
  */
-game.checkpointEntity = me.ObjectEntity.extend({
+game.checkpointEntity = me.Entity.extend({
 
 	/**
 	 * Create a new Checkpoint.

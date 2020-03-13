@@ -6,7 +6,7 @@
  *
  * The character you control around the game.
  */
-game.playerEntity = me.ObjectEntity.extend({
+game.playerEntity = me.Entity.extend({
 
 	// Constructor
 	init : function(x, y, settings) {
