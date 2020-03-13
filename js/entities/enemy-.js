@@ -32,7 +32,7 @@ game.enemy.entity = me.Entity.extend({
 
 		// This object doesn't respect the laws
 		// of physics.
-		this.gravity    = 0;
+		this.body.gravity    = 0;
 		this.collidable = true;
 		this.type       = me.game.ENEMY_OBJECT;
 	}

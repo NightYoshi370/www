@@ -39,11 +39,11 @@ me.MenuItem = me.Renderable.extend({
 
 		// Need to pre-render so we can measure how much
 		// space will it occupy on the screen
-		var size = this.font.measureText(me.video.getScreenContext(), label);
+		var size = this.font.measureText(me.video.renderer.getScreenContext(), label);
 
 		this._super(me.Renderable, 'init', [x, y, size.width, size.height]);
 
-		this.label    = label;
+		this.label = label;
 		this.callback = callback;
 
 		// Our big daddy

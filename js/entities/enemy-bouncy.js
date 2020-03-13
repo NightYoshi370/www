@@ -34,53 +34,50 @@ game.enemy.bouncy.entity = game.enemy.entity.extend({
 		this.walkLeft = true;
 		this.walkUp   = true;
 
-		this.setVelocity(0.12, 0.12);
+		this.body.setVelocity(0.12, 0.12);
 
 		// THIS IS A "BUG" ON MELONJS
 		// Since the player is 2 pixels large, it's
 		// collision box actually is 3 pixels large!
 		// Don't know why but I have to adjust it
 		// manually here.
-		if (this.walkType === game.enemy.bouncy.type.HORIZONTAL) {
+		/* if (this.walkType === game.enemy.bouncy.type.HORIZONTAL) {
 
-			var shape = this.getShape();
+			var shape = this.body.getShape();
 			shape.resize(
 				shape.width - 1,
 				shape.height
 			);
-		}
+		} */
 	},
 
 	update : function (delta) {
-
 		// Do nothing if not on the screen
 		if (! this.inViewport)
 			return false;
 
 		if (this.alive) {
-
 			if (this.walkType !== game.enemy.bouncy.type.HORIZONTAL) {
 				// This is either VERTICAL or BOTH
 
-				this.vel.y += ((this.walkUp) ?
-						       -this.accel.y :
-						       this.accel.y) * me.timer.tick;
+				this.body.vel.y += ((this.walkUp) ?
+						       -this.body.accel.y :
+						       this.body.accel.y) * me.timer.tick;
 
 			}
 			if (this.walkType !== game.enemy.bouncy.type.VERTICAL) {
 				// This is either HORIZONTAL or BOTH
 
-				this.vel.x += ((this.walkLeft) ?
-						       -this.accel.x :
-						       this.accel.x) * me.timer.tick;
+				this.body.vel.x += ((this.walkLeft) ?
+						       -this.body.accel.x :
+						       this.body.accel.x) * me.timer.tick;
 			}
-		}
-		else {
-			this.vel.x = this.vel.y = 0;
+		} else {
+			this.body.vel.x = this.body.vel.y = 0;
 		}
 
 		// melonJS internal callback
-		var collision = this.updateMovement();
+		var collision = this.body.update();
 
 		// Collided vertically!
 		if (collision.y != 0 && this.walkType === game.enemy.bouncy.type.VERTICAL)
@@ -90,7 +87,7 @@ game.enemy.bouncy.entity = game.enemy.entity.extend({
 		if (collision.x != 0 && this.walkType === game.enemy.bouncy.type.HORIZONTAL)
 			this.walkLeft = (! this.walkLeft);
 
-		this._super(game.enemy.entity, 'init', [delta]);
+		this._super(game.enemy.entity, 'update', [delta]);
 		return true;
 	}
 });

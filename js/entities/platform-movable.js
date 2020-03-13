@@ -77,7 +77,7 @@ game.platform.movable.entity = game.platform.entity.extend({
 		this._super(game.enemy.entity, 'init', [x, y, settings]);
 
 		// Velocities on the X and Y axis
-		this.setVelocity(0.17, 0.17);
+		this.body.setVelocity(0.17, 0.17);
 
 		// What kind of platform is this?
 		// Falling back to default
@@ -172,9 +172,9 @@ game.platform.movable.entity = game.platform.entity.extend({
 			// Make it walk
 			// Note that it's a stiff movement,
 			// with only two possible speeds.
-			this.vel.x = ((this.walkLeft) ?
-						  -this.accel.x :
-						  this.accel.x) * me.timer.tick;
+			this.body.vel.x = ((this.walkLeft) ?
+						  -this.body.accel.x :
+						  this.body.accel.x) * me.timer.tick;
 		}
 		else {
 
@@ -186,14 +186,14 @@ game.platform.movable.entity = game.platform.entity.extend({
 					 (this.pos.y >= this.endY))
 				this.walkUp = true;
 
-			this.vel.y = ((this.walkUp) ?
-						  -this.accel.y :
-						  this.accel.y) * me.timer.tick;
+			this.body.vel.y = ((this.walkUp) ?
+						  -this.body.accel.y :
+						  this.body.accel.y) * me.timer.tick;
 		}
 
 		// MelonJS' internal function to check collisions
 		// and stuff against the map.
-		var collision = this.updateMovement();
+		var collision = this.body.update();
 
 		// Just hit the map.
 		// Let's invert the movement instead of get stuck.

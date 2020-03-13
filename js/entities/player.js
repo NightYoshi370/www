@@ -29,11 +29,11 @@ game.playerEntity = me.Entity.extend({
 		// collision box actually is 3 pixels large!
 		// Don't know why but I have to adjust it
 		// manually here.
-		var shape = this.getShape();
+		/* var shape = this.body.getShape();
 		shape.resize(
 			shape.width - 1,
 			shape.height
-		);
+		); */
 
 		// Normally things outside the screen (viewport)
 		// are not updated.
@@ -41,7 +41,7 @@ game.playerEntity = me.Entity.extend({
 		this.alwaysUpdate = true;
 
 		// Speed when running
-		this.setVelocity(0.29, 0.39);
+		this.body.setVelocity(0.29, 0.39);
 
 		// Speed when walking (holding SHIFT)
 		this.walkVelocity = new me.Vector2d(0.19, 0.39);
@@ -56,8 +56,8 @@ game.playerEntity = me.Entity.extend({
 		// @note Independently of this gravity, the player's
 		//       vertical position can't go further than
 		//       what we set up there.
-		this.gravity         = me.sys.gravity;
-		this.absoluteGravity = Math.abs(this.gravity);
+		this.body.gravity         = me.sys.gravity;
+		this.absoluteGravity = Math.abs(this.body.gravity);
 
 		// Saving our current position so when
 		// we die we return here.
@@ -127,11 +127,11 @@ game.playerEntity = me.Entity.extend({
 		// Run (or Walk)!
 		var xSpeedIncrease = ((this.walking) ?
 							  this.walkVelocity.x :
-							  this.accel.x) * me.timer.tick;
+							  this.body.accel.x) * me.timer.tick;
 
-		if      (me.input.isKeyPressed("left"))  this.vel.x = -xSpeedIncrease;
-		else if (me.input.isKeyPressed("right")) this.vel.x = xSpeedIncrease;
-		else                                     this.vel.x = 0;
+		if      (me.input.isKeyPressed("left"))  this.body.vel.x = -xSpeedIncrease;
+		else if (me.input.isKeyPressed("right")) this.body.vel.x = xSpeedIncrease;
+		else                                     this.body.vel.x = 0;
 
 		// Panic Button aka. Suicide Key aka. Angel of death aka...
 		if (me.input.isKeyPressed("die")) {
@@ -141,14 +141,14 @@ game.playerEntity = me.Entity.extend({
 
 		// Need to call this so we can update
 		// the movement, animation and stuff
-		this._super(me.Entity, 'init', [delta]);
+		this._super(me.Entity, 'update', [delta]);
 
 		// Moving Platforms!
 		// Here we add the player's velocity
 		// if he's on top of a movable platform RIGHT NOW
 		if (this.platform) {
-			this.vel.x += this.platform.vel.x;
-			this.vel.y += this.platform.vel.y;
+			this.body.vel.x += this.platform.vel.x;
+			this.body.vel.y += this.platform.vel.y;
 
 			// And now that I've updated the speed, let's
 			// clear any platforms associated to us.
@@ -159,7 +159,7 @@ game.playerEntity = me.Entity.extend({
 
 		// Updating the movement and checking for
 		// collisions with the map
-		var collision = this.updateMovement();
+		var collision = this.body.update();
 
 		// Here we allow the player to change gravity
 		// again.
@@ -170,12 +170,12 @@ game.playerEntity = me.Entity.extend({
 		if (collision.y != 0) {
 
 			// The player's falling up and just hit the ceiling
-			if ((this.gravity < 0) && (collision.y < 0))
-				this.falling = false;
+			if ((this.body.gravity < 0) && (collision.y < 0))
+				this.body.falling = false;
 
 			// The player's falling down and hit the ground
-			else if ((this.gravity > 0) && (collision.y > 0))
-				this.falling = false;
+			else if ((this.body.gravity > 0) && (collision.y > 0))
+				this.body.falling = false;
 
 			// NOTE: This is needed, otherwise the collision
 			//       system gets screwed up when the player
@@ -192,7 +192,7 @@ game.playerEntity = me.Entity.extend({
 		// Not colliding - means the player can switch
 		// the gravity
 		else
-			this.falling = true;
+			this.body.falling = true;
 
 		// Now checking for collision with
 		// game objects
@@ -209,10 +209,10 @@ game.playerEntity = me.Entity.extend({
 				case me.game.PLATFORM_MOVABLE_OBJECT:
 					// Head (or butt) collision with platform
 					if (collision.y != 0) {
-						this.falling = false;
-						this.vel.y = 0;
+						this.body.falling = false;
+						this.body.vel.y = 0;
 
-						if (this.gravity < 0)
+						if (this.body.gravity < 0)
 							this.pos.y = collision.obj.bottom;
 						else
 							this.pos.y = collision.obj.top - this.height;
@@ -239,14 +239,14 @@ game.playerEntity = me.Entity.extend({
 
 		// Will only flip if we're touching
 		// the ground
-		if (this.falling)
+		if (this.body.falling)
 			return;
 
 		// Simple as that!
-		this.gravity = -this.gravity;
+		this.body.gravity = -this.body.gravity;
 
 		// Inverting the player sprite
-		if (this.gravity < 0)
+		if (this.body.gravity < 0)
 			this.renderable.flipY(true);
 		else
 			this.renderable.flipY(false);
@@ -337,14 +337,14 @@ game.playerEntity = me.Entity.extend({
 		// Restore player's original position
 		this.pos.setV(this.respawn.pos);
 
-		this.falling = false;
+		this.body.falling = false;
 		this.area    = this.respawn.area;
-		this.gravity = this.respawn.gravity;
+		this.body.gravity = this.respawn.gravity;
 
 		// Inverting the player sprite
 		// WARNING: Duplicated code!
 		//          See `this.flip()`
-		if (this.gravity < 0)
+		if (this.body.gravity < 0)
 			this.renderable.flipY(true);
 		else
 			this.renderable.flipY(false);

@@ -29,7 +29,7 @@ game.platform.entity = me.Entity.extend({
 		this.renderable.addAnimation("stand-there-doing-nothing", [0]);
 		this.renderable.setCurrentAnimation("stand-there-doing-nothing");
 
-		this.gravity = 0;
+		this.body.gravity = 0;
 		this.collidable = true;
 		this.type = me.game.PLATFORM_OBJECT;
 	}

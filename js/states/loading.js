@@ -58,7 +58,7 @@ var BackgroundImageThatOnlyDrawsWhenAsked = me.Sprite.extend({
 		// Only draw when I tell you to
 		if (this.willForceDraw) {
 			this.willForceDraw = false;
-			this._super(me.Sprite, 'init', [context]);
+			this._super(me.Sprite, 'draw', [context]);
 		}
 	},
 
@@ -104,7 +104,7 @@ game.CustomLoadingScreen = me.ScreenObject.extend({
 		// - w, h,
 		// - Vector2d(padding x, padding y)
 		//
-		this.progressBar = new me.ProgressBar(new me.Vector2d(3, 5), me.game.viewport.width-7, 4, new me.Vector2d(0, 1));
+		this.progressBar = new me.ProgressBar(3, 5, me.game.viewport.width-7, 4, new me.Vector2d(0, 1));
 		this.progressBar.setColors('green', 'black');
 		me.game.world.addChild(this.progressBar, 1);
 

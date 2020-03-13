@@ -34,7 +34,7 @@ game.PlayState = me.ScreenObject.extend({
 		// Before loading the level, let's place a text
 		// on the screen saying that we're doing this
 		game.font_black.draw(
-			me.video.getScreenContext(),
+			me.video.renderer,
 			"Loading level...",
 			0, 0
 		);

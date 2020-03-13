@@ -91,7 +91,7 @@ me.RepeatableSpriteObject = me.Sprite.extend({
 				// for placing the Image on the Canvas,
 				// according to our `this.pos.x` and `this.pos.y`
 
-				this._super(me.Sprite, 'init', [context]);
+				this._super(me.Sprite, 'draw', [context]);
 
 				this.pos.y += this.height;
 			}

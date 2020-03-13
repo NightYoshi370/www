@@ -20,8 +20,8 @@ me.ProgressBar = me.Renderable.extend({
 	 *                  (another melonJS' `Vector2d` class)
 	 *                  (optional)
 	 */
-    init: function(posVector, w, h, padding) {
-		this._super(me.Renderable, 'init', [posVector, w, h]);
+    init: function(x, y, w, h, padding) {
+		this._super(me.Renderable, 'init', [x, y, w, h]);
 
         // Internal flag to know when we
 		// must redraw the progress bar
@@ -43,9 +43,7 @@ me.ProgressBar = me.Renderable.extend({
 		// TODO: Dynamically adjust the font size according
 		//       to our size
 		// TODO: Default font name?
-		this.font = new me.Font(
-			"century gothic", 12, "white", "middle"
-		);
+		this.font = new me.Font("century gothic", 12, "white", "middle");
     },
 
 	/**
