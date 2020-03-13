@@ -199,34 +199,32 @@ game.playerEntity = me.ObjectEntity.extend({
 		collision = me.game.world.collide(this);
 
 		if (collision) {
+			switch(collision.obj.type) {
+				case me.game.SPIKE_OBJECT:
+				case me.game.ENEMY_OBJECT:
+					this.die();
+					break;
+				case me.game.PLATFORM_OBJECT:
+				case me.game.PLATFORM_VANISHING_OBJECT:
+				case me.game.PLATFORM_MOVABLE_OBJECT:
+					// Head (or butt) collision with platform
+					if (collision.y != 0) {
+						this.falling = false;
+						this.vel.y = 0;
 
-			if ((collision.obj.type === me.game.SPIKE_OBJECT) ||
-				(collision.obj.type === me.game.ENEMY_OBJECT))
-				this.die();
+						if (this.gravity < 0)
+							this.pos.y = collision.obj.bottom;
+						else
+							this.pos.y = collision.obj.top - this.height;
+					}
 
-			else if ((collision.obj.type === me.game.PLATFORM_OBJECT) ||
-					 (collision.obj.type === me.game.PLATFORM_VANISHING_OBJECT) ||
-					 (collision.obj.type === me.game.PLATFORM_MOVABLE_OBJECT)) {
-
-				// Head (or butt) collision with platform
-				if (collision.y != 0) {
-					this.falling = false;
-					this.vel.y = 0;
-
-					if (this.gravity < 0)
-						this.pos.y = collision.obj.bottom;
-					else
-						this.pos.y = collision.obj.top - this.height;
-				}
-
-				// Side collision
-				if (collision.x != 0) {
-					// What should I do?
-				}
-			}
-			else if (collision.obj.type === me.game.TELEPORTER_OBJECT) {
-				// game over
-				me.state.change(me.state.GAME_OVER);
+					// Side collision
+					if (collision.x != 0) {
+						// What should I do?
+					}
+					break;
+				case me.game.TELEPORTER_OBJECT:
+					me.state.change(me.state.GAME_OVER);
 			}
 
 			return false;
