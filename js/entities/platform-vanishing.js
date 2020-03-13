@@ -98,7 +98,7 @@ game.platform.vanishing.entity = game.platform.entity.extend({
 	 * @param settings A hash with options, defined on Tiled.
 	 */
 	init : function(x, y, settings) {
-		this.parent(x, y, settings);
+		this._super(game.enemy.entity, 'init', [x, y, settings]);
 
 		// These will control the internal state
 		// of the platform

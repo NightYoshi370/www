@@ -36,7 +36,7 @@
 var BackgroundImageThatOnlyDrawsWhenAsked = me.Sprite.extend({
 
 	init : function(image, x, y, w, h) {
-		this.parent(x, y, image);
+		this._super(me.Sprite, 'init', [x, y, image]);
 
 		// From now on, we'll resize the image from it's
 		// top-left point
@@ -58,7 +58,7 @@ var BackgroundImageThatOnlyDrawsWhenAsked = me.Sprite.extend({
 		// Only draw when I tell you to
 		if (this.willForceDraw) {
 			this.willForceDraw = false;
-			this.parent(context);
+			this._super(me.Sprite, 'init', [context]);
 		}
 	},
 
@@ -74,7 +74,7 @@ var BackgroundImageThatOnlyDrawsWhenAsked = me.Sprite.extend({
 game.CustomLoadingScreen = me.ScreenObject.extend({
 
 	"init" : function() {
-		this.parent(true);
+		this._super(me.ScreenObject, 'init', [true]);
 
 		// Thing that keeps watching for progress
 		// on the loading and calls our internal function
@@ -104,11 +104,7 @@ game.CustomLoadingScreen = me.ScreenObject.extend({
 		// - w, h,
 		// - Vector2d(padding x, padding y)
 		//
-		this.progressBar = new me.ProgressBar(
-			new me.Vector2d(3,    5),
-			me.game.viewport.width-7,  4,
-			new me.Vector2d(0,    1)
-		);
+		this.progressBar = new me.ProgressBar(new me.Vector2d(3, 5), me.game.viewport.width-7, 4, new me.Vector2d(0, 1));
 		this.progressBar.setColors('green', 'black');
 		me.game.world.addChild(this.progressBar, 1);
 

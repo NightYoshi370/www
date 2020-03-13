@@ -25,8 +25,7 @@ game.pauseHandlerEntity = me.Renderable.extend({
 	init : function () {
 
 		// Bleh.
-		this.parent(new me.Vector2d(5, 0),
-					me.game.viewport.width, me.game.viewport.height);
+		this._super(me.Renderable, 'init', [5, 0, me.game.viewport.width, me.game.viewport.height]);
 
 
 		// This is very important

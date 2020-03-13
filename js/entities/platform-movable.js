@@ -74,7 +74,7 @@ game.platform.movable.entity = game.platform.entity.extend({
 		// Creating the platform...
 		// It's position (x, y) and size (width, height) will
 		// be set as the default for all platforms.
-		this.parent(x, y, settings);
+		this._super(game.enemy.entity, 'init', [x, y, settings]);
 
 		// Velocities on the X and Y axis
 		this.setVelocity(0.17, 0.17);

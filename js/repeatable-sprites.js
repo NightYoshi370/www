@@ -37,7 +37,7 @@ me.RepeatableSpriteObject = me.Sprite.extend({
 	 * @note Other parameters are just like on `SpriteObject`.
 	 */
 	init : function (x, y, image, spritewidth, spriteheight, width, height) {
-		this.parent(x, y, image, spritewidth, spriteheight);
+		this._super(me.Sprite, 'init', [x, y, image, spritewidth, spriteheight]);
 
 		// Let's use this to know the area where
 		// to repeat the sprites
@@ -90,7 +90,8 @@ me.RepeatableSpriteObject = me.Sprite.extend({
 				// Our parent (SpriteObject) is responsible
 				// for placing the Image on the Canvas,
 				// according to our `this.pos.x` and `this.pos.y`
-				this.parent(context);
+
+				this._super(me.Sprite, 'init', [context]);
 
 				this.pos.y += this.height;
 			}

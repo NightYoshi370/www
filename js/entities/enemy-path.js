@@ -65,7 +65,7 @@ game.enemy.path.entity = game.enemy.entity.extend({
 		var pathHeight = settings.height;
 
 		// Creating our parent Enemy class.
-		this.parent(x, y, settings);
+		this._super(game.enemy.entity, 'init', [x, y, settings]);
 
 		// X and Y velocities
 		this.setVelocity(0.12, 0.12);

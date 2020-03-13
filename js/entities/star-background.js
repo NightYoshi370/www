@@ -80,7 +80,7 @@ game.starBackground = me.ParticleEmitter.extend({
 
 		// Creating the thing that will spawn the particles.
 		// Remember, they will get spawned INSIDE it.
-		this.parent(0, 0, particleSettings);
+		this._super(me.ParticleEmitter, 'init', [0, 0, particleSettings]);
 	},
 
 	/**

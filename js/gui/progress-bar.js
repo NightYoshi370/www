@@ -21,7 +21,7 @@ me.ProgressBar = me.Renderable.extend({
 	 *                  (optional)
 	 */
     init: function(posVector, w, h, padding) {
-        this.parent(posVector, w, h);
+		this._super(me.Renderable, 'init', [posVector, w, h]);
 
         // Internal flag to know when we
 		// must redraw the progress bar
@@ -31,9 +31,7 @@ me.ProgressBar = me.Renderable.extend({
         this.progressWidth = 0;
 
 		// Padding of the internal progress rectangle
-		this.progressPadding = ((typeof(padding) === "undefined") ?
-								new me.Vector2d(0, 0) :
-								padding);
+		this.progressPadding = ((typeof(padding) === "undefined") ? new me.Vector2d(0, 0) : padding);
 
 		this.setColors('white', 'black');
 

@@ -23,7 +23,7 @@ game.platform.entity = me.Entity.extend({
 		settings.spriteheight = settings.height = 1;
 
 		// Creating the object (melonJS-specific stuff)
-		this.parent(x, y, settings);
+		this._super(me.Entity, 'init', [x, y, settings]);
 
 		// This is needed so it can be shown on the screen.
 		this.renderable.addAnimation("stand-there-doing-nothing", [0]);

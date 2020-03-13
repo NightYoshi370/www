@@ -20,7 +20,7 @@ game.playerEntity = me.Entity.extend({
 		settings.spriteheight = settings.height = 4;
 
 		// Need to create super-class-specific stuff
-		this.parent(x, y, settings);
+		this._super(me.Entity, 'init', [x, y, settings]);
 
 		this.area = "area000";
 
@@ -141,7 +141,7 @@ game.playerEntity = me.Entity.extend({
 
 		// Need to call this so we can update
 		// the movement, animation and stuff
-		this.parent(delta);
+		this._super(me.Entity, 'init', [delta]);
 
 		// Moving Platforms!
 		// Here we add the player's velocity

@@ -45,7 +45,7 @@ game.checkpointEntity = me.Entity.extend({
 		settings.spriteheight = settings.height = 2;
 
 		// Creating the object (melonJS-specific stuff)
-		this.parent(x, y, settings);
+		this._super(me.Entity, 'init', [x, y, settings]);
 
 		this.renderable.addAnimation("inactive", [0]);
 		this.renderable.addAnimation("active",   [1]);

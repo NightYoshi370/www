@@ -29,7 +29,7 @@ game.enemy.bouncy.entity = game.enemy.entity.extend({
 		// Defaulting to horizontal enemy
 		this.walkType = settings.type || game.enemy.bouncy.type.HORIZONTAL;
 
-		this.parent(x, y, settings);
+		this._super(game.enemy.entity, 'init', [x, y, settings]);
 
 		this.walkLeft = true;
 		this.walkUp   = true;
@@ -83,16 +83,14 @@ game.enemy.bouncy.entity = game.enemy.entity.extend({
 		var collision = this.updateMovement();
 
 		// Collided vertically!
-		if (collision.y != 0)
-			if (this.walkType === game.enemy.bouncy.type.VERTICAL)
-				this.walkUp = (! this.walkUp);
+		if (collision.y != 0 && this.walkType === game.enemy.bouncy.type.VERTICAL)
+			this.walkUp = (! this.walkUp);
 
 		// Collided horizontally
-		if (collision.x != 0)
-			if (this.walkType === game.enemy.bouncy.type.HORIZONTAL)
-				this.walkLeft = (! this.walkLeft);
+		if (collision.x != 0 && this.walkType === game.enemy.bouncy.type.HORIZONTAL)
+			this.walkLeft = (! this.walkLeft);
 
-		this.parent(delta);
+		this._super(game.enemy.entity, 'init', [delta]);
 		return true;
 	}
 });

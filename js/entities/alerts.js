@@ -22,7 +22,7 @@ game.alertEntity = me.CollectableEntity.extend({
 		settings.spritewidth  = 2;
 		settings.spriteheight = 2;
 
-		this.parent(x, y, settings);
+		this._super(me.CollectableEntity, 'init', [x, y, settings]);
 
 		this.renderable.addAnimation("nothing", [0]);
 		this.renderable.setCurrentAnimation("nothing");

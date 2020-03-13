@@ -65,7 +65,7 @@ game.spikeEntity = me.Entity.extend({
 		settings.spriteheight = 2;
 
 		// Creating the object (melonJS-specific stuff)
-		this.parent(x, y, settings);
+		this._super(me.Entity, 'init', [x, y, settings]);
 
 		// Now, instead of having a single spike sprite
 		// let's repeat it along the area defined by

@@ -17,7 +17,7 @@ game.messageEntity = me.Renderable.extend({
 
 		// Creating the parent Rectangle
 		// Width/Height doesn't matter now
-		this.parent(new me.Vector2d(x, y), 0, 0);
+		this._super(me.Renderable, 'init', [x, y, 0, 0]);
 
 		// The text that will be shown is defined on Tiled
 		// Since you can specify line breaks (\n), let's

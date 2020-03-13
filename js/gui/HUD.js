@@ -22,7 +22,7 @@ game.HUD = game.HUD || {};
 game.HUD.Container = me.Container.extend({
 
 	init : function() {
-		this.parent();
+		this._super(me.Container, 'init');
 
 		// Persistent across level changes
 		this.isPersistent = true;

@@ -24,7 +24,7 @@ game.enemy.entity = me.Entity.extend({
 		settings.spriteheight = settings.height = 2;
 
 		// Creating the object (melonJS-specific stuff)
-		this.parent(x, y, settings);
+		this._super(me.Entity, 'init', [x, y, settings]);
 
 		// This is needed so it can be shown on the screen.
 		this.renderable.addAnimation("walking", [0, 1, 2, 3], 400);

@@ -1,19 +1,14 @@
-// Aww yeah
-
 /*global game,me*/
 
 /**
  * Text that can be scrolled on the screen,
  * both on vertical and horizontal axis.
  */
-game.ScrollableText = me.Renderable.extend ({
-
+game.ScrollableText = me.Renderable.extend({
 	init : function(text) {
 
 		// Embracing all the screen size
-		this.parent(new me.Vector2d(0, 0),
-				    me.game.viewport.width,
-				    me.game.viewport.height);
+		this._super(me.Renderable, 'init', [0, 0, me.game.viewport.width, me.game.viewport.height]);
 
 		// How much of the text was scrolled
 		// until now.

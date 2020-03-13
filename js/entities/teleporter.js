@@ -21,7 +21,7 @@ game.teleporter.entity = me.CollectableEntity.extend({
 		settings.spritewidth  = 10;
 		settings.spriteheight = 10;
 
-		this.parent(x, y, settings);
+		this._super(me.CollectableEntity, 'init', [x, y, settings]);
 
 		this.renderable.addAnimation("nothing", [0, 1], 1000);
 		this.renderable.setCurrentAnimation("nothing");
