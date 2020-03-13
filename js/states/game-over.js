@@ -8,7 +8,7 @@ game.ScrollableText = me.Renderable.extend({
 	init : function(text) {
 
 		// Embracing all the screen size
-		this._super(me.Renderable, 'init', [new me.Vector2d(0, 0), me.game.viewport.width, me.game.viewport.height]);
+		this._super(me.Renderable, 'init', [0, 0, me.game.viewport.width, me.game.viewport.height]);
 
 		// How much of the text was scrolled
 		// until now.
@@ -34,7 +34,7 @@ game.ScrollableText = me.Renderable.extend({
 
 	draw : function(context) {
 
-		me.video.clearSurface(context, 'black');
+		me.video.renderer.clearSurface(context, 'black');
 
 		// Drawing each line
 		for (var i = 0; i < this.array.length; i++) {

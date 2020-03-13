@@ -225,7 +225,7 @@ game.platform.vanishing.entity = game.platform.entity.extend({
 		this.renderable.setOpacity(0);
 
 		// And the player won't even touch it.
-		this.collidable = false;
+		this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 
 		// This adds ourselves to the global list of
 		// platforms that are vanished.

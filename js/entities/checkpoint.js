@@ -56,13 +56,27 @@ game.checkpointEntity = me.Entity.extend({
 
 		this.collidable = true;
 		this.type = me.game.CHECKPOINT_OBJECT;
+
+		this.body.onCollision = this.onCollision.bind(this);
+	},
+	
+	update : function (delta) {
+		this.body.update();
+		me.collision.check(this, true, this.collideHandler.bind(this), true)
+
+		this._super(me.Entity, "update", [delta]);
+		return true;
+	},
+
+	collideHandler: function(responce) {
+		console.log('colision handler check')
 	},
 
 	/**
 	 * Called when an object collides with us.
 	 */
 	onCollision : function(collisionVector, otherObject) {
-
+		console.log('colision detect!')
 		// Player hit us!
 		if (otherObject.type === me.game.PLAYER_OBJECT) {
 			this.activate(true);
@@ -94,13 +108,7 @@ game.checkpointEntity = me.Entity.extend({
 
 		// Activatin'
 		this.active = option;
-		this.renderable.setCurrentAnimation((option) ?
-											"active" :
-											"inactive");
-	},
-
-	update : function (delta) {
-		return true;
+		this.renderable.setCurrentAnimation((option) ? "active" : "inactive");
 	}
 });
 

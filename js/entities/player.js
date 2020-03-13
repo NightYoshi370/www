@@ -30,7 +30,10 @@ game.playerEntity = me.Entity.extend({
 		// Don't know why but I have to adjust it
 		// manually here.
 		var shape = this.body.getShape();
-		shape.bounds.width--;
+		/* shape.scale(
+			shape.width - 1,
+			shape.height
+		); */
 
 		// Normally things outside the screen (viewport)
 		// are not updated.
@@ -220,6 +223,7 @@ game.playerEntity = me.Entity.extend({
 						// What should I do?
 					}
 					break;
+				//case me.game.CHECKPOINT_OBJECT:
 				case me.game.TELEPORTER_OBJECT:
 					me.state.change(me.state.GAME_OVER);
 			}
@@ -274,16 +278,9 @@ game.playerEntity = me.Entity.extend({
 		// NOTE: Apparently I can't attach a callback
 		//       to Renderable#flicker()... What the FUCK
 		this.renderable.flicker(10);
-
-		me.timer.setTimeout(
-			function() {
-				game.player.dying = false;
-				game.player.doRespawn();
-			},
-			500
-		);
-
 		me.audio.play("death", false, null, me.save.sfxVolume);
+
+		me.timer.setTimeout(() => { game.player.dying = false; game.player.doRespawn() }, 500);
 
 		// This is needed so when the player dies we make
 		// sure it can go through the level again
