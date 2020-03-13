@@ -29,11 +29,8 @@ game.playerEntity = me.Entity.extend({
 		// collision box actually is 3 pixels large!
 		// Don't know why but I have to adjust it
 		// manually here.
-		/* var shape = this.body.getShape();
-		shape.resize(
-			shape.width - 1,
-			shape.height
-		); */
+		var shape = this.body.getShape();
+		shape.bounds.width--;
 
 		// Normally things outside the screen (viewport)
 		// are not updated.

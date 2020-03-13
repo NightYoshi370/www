@@ -41,14 +41,10 @@ game.enemy.bouncy.entity = game.enemy.entity.extend({
 		// collision box actually is 3 pixels large!
 		// Don't know why but I have to adjust it
 		// manually here.
-		/* if (this.walkType === game.enemy.bouncy.type.HORIZONTAL) {
-
+		if (this.walkType === game.enemy.bouncy.type.HORIZONTAL) {
 			var shape = this.body.getShape();
-			shape.resize(
-				shape.width - 1,
-				shape.height
-			);
-		} */
+			shape.bounds.width--;
+		}
 	},
 
 	update : function (delta) {
